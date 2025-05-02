@@ -43,3 +43,34 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Firebase Secrets (important!)
+android/app/google-services.json
+ios/Runner/GoogleService-Info.plist
+
+# Android local
+android/.gradle/
+android/local.properties
+
+# iOS local
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/Generated.xcconfig
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/Runner.xcworkspace/
+ios/*.xcuserstate
+
+# Desktop platform
+macos/Pods/
+macos/Flutter/ephemeral/
+windows/flutter/ephemeral/
+linux/flutter/ephemeral/
+
+# Web
+web/.dart_tool/
+
+# Env & Logs
+.env
+*.log
+firebase-debug.log
