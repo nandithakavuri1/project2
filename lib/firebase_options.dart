@@ -41,46 +41,49 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyANcyL-r1i2ED0WV4RfGule3OzvLlIAfaw',
-    appId: '1:873549081857:web:d616b611d6a2bdec96bf00',
-    messagingSenderId: '873549081857',
-    projectId: 'book-recomend',
-    authDomain: 'book-recomend.firebaseapp.com',
-    storageBucket: 'book-recomend.firebasestorage.app',
+    apiKey: 'AIzaSyC9ikmJWfGd-8pNFmf2mkf1iyCYk_uSBqU',
+    appId: '1:756527807127:web:b02ea942bc21ef9c0c07d2',
+    messagingSenderId: '756527807127',
+    projectId: 'book-recommendation-d4c4b',
+    authDomain: 'book-recommendation-d4c4b.firebaseapp.com',
+    storageBucket: 'book-recommendation-d4c4b.firebasestorage.app',
+    measurementId: 'G-BKVS0CL0Y0',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDtTSQ9PYjlMom0JIDRno8_r_Rk7prHlss',
-    appId: '1:873549081857:android:783325a3e793c2c396bf00',
-    messagingSenderId: '873549081857',
-    projectId: 'book-recomend',
-    storageBucket: 'book-recomend.firebasestorage.app',
+    apiKey: 'AIzaSyDs72zdBJLOWbVPmZbdN7vbsSycQ6Xd0GQ',
+    appId: '1:756527807127:android:0fbebc428240b90f0c07d2',
+    messagingSenderId: '756527807127',
+    projectId: 'book-recommendation-d4c4b',
+    storageBucket: 'book-recommendation-d4c4b.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyA3EAX22FdVBoaUOjiovBSmNeZoOspJLQY',
-    appId: '1:873549081857:ios:62bbb3e5efddb70796bf00',
-    messagingSenderId: '873549081857',
-    projectId: 'book-recomend',
-    storageBucket: 'book-recomend.firebasestorage.app',
+    apiKey: 'AIzaSyDrStAFYOgjtgjb-PXaLsILhzF--uFQFrY',
+    appId: '1:756527807127:ios:3ab0c753f714b7c30c07d2',
+    messagingSenderId: '756527807127',
+    projectId: 'book-recommendation-d4c4b',
+    storageBucket: 'book-recommendation-d4c4b.firebasestorage.app',
     iosBundleId: 'com.example.bookRecommendationApp',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyA3EAX22FdVBoaUOjiovBSmNeZoOspJLQY',
-    appId: '1:873549081857:ios:62bbb3e5efddb70796bf00',
-    messagingSenderId: '873549081857',
-    projectId: 'book-recomend',
-    storageBucket: 'book-recomend.firebasestorage.app',
+    apiKey: 'AIzaSyDrStAFYOgjtgjb-PXaLsILhzF--uFQFrY',
+    appId: '1:756527807127:ios:3ab0c753f714b7c30c07d2',
+    messagingSenderId: '756527807127',
+    projectId: 'book-recommendation-d4c4b',
+    storageBucket: 'book-recommendation-d4c4b.firebasestorage.app',
     iosBundleId: 'com.example.bookRecommendationApp',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyANcyL-r1i2ED0WV4RfGule3OzvLlIAfaw',
-    appId: '1:873549081857:web:4aea21567f7bb32b96bf00',
-    messagingSenderId: '873549081857',
-    projectId: 'book-recomend',
-    authDomain: 'book-recomend.firebaseapp.com',
-    storageBucket: 'book-recomend.firebasestorage.app',
+    apiKey: 'AIzaSyC9ikmJWfGd-8pNFmf2mkf1iyCYk_uSBqU',
+    appId: '1:756527807127:web:e374d25f258ab22d0c07d2',
+    messagingSenderId: '756527807127',
+    projectId: 'book-recommendation-d4c4b',
+    authDomain: 'book-recommendation-d4c4b.firebaseapp.com',
+    storageBucket: 'book-recommendation-d4c4b.firebasestorage.app',
+    measurementId: 'G-ZRS6WRG6XC',
   );
+
 }
