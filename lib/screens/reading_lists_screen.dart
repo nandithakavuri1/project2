@@ -12,15 +12,12 @@ class _ReadingListsScreenState extends State<ReadingListsScreen>
   late TabController _tabController;
   final user = FirebaseAuth.instance.currentUser;
 
-  final Map<String, String> tabToStatus = {
-    'Want': 'want',
-    'Current': 'current',
-    'Finished': 'finished',
-  };
+  final List<String> statuses = ['want', 'current', 'finished'];
+  final List<String> tabLabels = ['Want', 'Current', 'Finished'];
 
   @override
   void initState() {
-    _tabController = TabController(length: tabToStatus.length, vsync: this);
+    _tabController = TabController(length: statuses.length, vsync: this);
     super.initState();
   }
 
@@ -43,15 +40,12 @@ class _ReadingListsScreenState extends State<ReadingListsScreen>
         title: Text("My Reading Lists"),
         bottom: TabBar(
           controller: _tabController,
-          tabs: tabToStatus.keys.map((label) => Tab(text: label)).toList(),
+          tabs: tabLabels.map((label) => Tab(text: label)).toList(),
         ),
       ),
       body: TabBarView(
         controller: _tabController,
-        children:
-            tabToStatus.values
-                .map((status) => buildReadingList(status))
-                .toList(),
+        children: statuses.map((status) => buildReadingList(status)).toList(),
       ),
     );
   }
@@ -76,7 +70,9 @@ class _ReadingListsScreenState extends State<ReadingListsScreen>
 
         if (docs.isEmpty)
           return Center(
-            child: Text("No books in ${status.toUpperCase()} list."),
+            child: Text(
+              "No books in ${status[0].toUpperCase()}${status.substring(1)} list.",
+            ),
           );
 
         return ListView.builder(
@@ -97,36 +93,35 @@ class _ReadingListsScreenState extends State<ReadingListsScreen>
                         : Icon(Icons.book),
                 title: Text(data['title'] ?? 'No Title'),
                 subtitle: Text(data['author'] ?? 'Unknown Author'),
-                trailing: PopupMenuButton<String>(
-                  onSelected: (value) => handleMenuAction(value, doc.id),
-                  itemBuilder:
-                      (context) => [
-                        if (status != 'want')
-                          PopupMenuItem(
-                            value: 'want',
-                            child: Text("Move to Want"),
-                          ),
-                        if (status != 'current')
-                          PopupMenuItem(
-                            value: 'current',
-                            child: Text("Move to Current"),
-                          ),
-                        if (status != 'finished')
-                          PopupMenuItem(
-                            value: 'finished',
-                            child: Text("Move to Finished"),
-                          ),
-                        PopupMenuItem(
-                          value: 'delete',
-                          child: Text("Remove from List"),
-                        ),
-                      ],
+                trailing: IconButton(
+                  icon: Icon(Icons.delete, color: Colors.red),
+                  tooltip: "Remove from list",
+                  onPressed: () async {
+                    await FirebaseFirestore.instance
+                        .collection('users')
+                        .doc(user!.uid)
+                        .collection('readingLists')
+                        .doc(doc.id)
+                        .delete();
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text("Book removed from your list.")),
+                    );
+                  },
                 ),
                 onTap: () {
                   Navigator.pushNamed(
                     context,
                     '/bookDetail',
-                    arguments: {'bookId': doc.id},
+                    arguments: {
+                      'bookId': doc.id,
+                      'bookData': {
+                        'id': doc.id,
+                        'title': data['title'],
+                        'authors': data['author'],
+                        'thumbnail': data['thumbnail'],
+                        // Add more fields if needed
+                      },
+                    },
                   );
                 },
               ),
@@ -135,25 +130,5 @@ class _ReadingListsScreenState extends State<ReadingListsScreen>
         );
       },
     );
-  }
-
-  void handleMenuAction(String action, String bookId) async {
-    final docRef = FirebaseFirestore.instance
-        .collection('users')
-        .doc(user!.uid)
-        .collection('readingLists')
-        .doc(bookId);
-
-    if (action == 'delete') {
-      await docRef.delete();
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text("Book removed from your list.")));
-    } else {
-      await docRef.update({'status': action});
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text("Book moved to ${action.toUpperCase()} list.")),
-      );
-    }
   }
 }

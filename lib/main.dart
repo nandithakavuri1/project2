@@ -44,12 +44,9 @@ class BookMateApp extends StatelessWidget {
           },
           onGenerateRoute: (settings) {
             if (settings.name == '/bookDetail') {
-              final args = settings.arguments as Map<String, dynamic>?;
               return MaterialPageRoute(
-                builder:
-                    (_) => BookDetailScreen(
-                      bookId: args?['bookId'] ?? 'unknown_book',
-                    ),
+                builder: (context) => BookDetailScreen(),
+                settings: settings,
               );
             }
             return null;
